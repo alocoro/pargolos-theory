@@ -1,0 +1,46 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<div id="pictures">
+
+  <img id="f0" src="f1.png" width='30%' height='30%' alt="01" />
+  <img id="f1" src="f2.png" width='30%' height='30%' alt="02" />
+  <img id="f2" src="f3.png" width='30%' height='30%' alt="03" />
+  <img id="f3" src="f4.png" width='30%' height='30%' alt="04" />
+  <img id="f4" src="f5.png" width='30%' height='30%' alt="05" />
+
+</div>
+
+<script type="text/javascript">
+var array = ['f1.png','f2.png','f3.png','f4.png','f5.png','f6.png','f7.png','f8.png'];
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
+var shuffled_images = shuffle(array);
+for(var i=0;i<5;i++) {
+<!--var parent = document.getElementById('pictures');
+var elem = document.getElementById('f' + (i));
+elem.src = shuffled_images[i] ;
+}
+</script>
+
+</body>
+</html>
+
