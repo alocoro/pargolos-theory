@@ -14,8 +14,12 @@
 <div><img id="f5" src="" width='612px' height='408px' alt="06" /><b>6 &nbsp;&nbsp; </b></div>    
 <div><img id="f6" src="" width='612px' height='408px' alt="07" /><b>7 &nbsp;&nbsp; </b> </div>   
 <div><img id="f7" src="" width='612px' height='408px' alt="08" /><b>8 &nbsp;&nbsp; </b></div>  
+
+<button onclick="registerExp()">Click me when Task is finished</button>
 </div>
 <script type="text/javascript">
+var startTime = new Date().getTime();  
+
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define([], factory);
@@ -238,6 +242,7 @@ var str = "";
 for(var j=0;j<8;j++) {
 str = str + shuffled_images[j].toString() + " ";
 }
+
  
  var textFile = null,
   makeTextFile = function (txt1) {
@@ -254,10 +259,17 @@ str = str + shuffled_images[j].toString() + " ";
     // returns a URL you can use as a href
     //return textFile;
 	;
+	
 	saveAs(data, "static.txt");
   };
   
-  makeTextFile(str);
+  registerExp(){
+    var endTime = new Date().getTime();  
+	var totTime = endTime-startTime;
+	str = str + totTime + "ms";
+	
+	makeTextFile(str);
+  }
   
   <!--vvar file = new File(makeTextFile(str), txtFile);-->
   
