@@ -228,6 +228,7 @@ function shuffle(array) {
 
   return array;
 }
+
 var shuffled_images = shuffle(array);
 for(var i=0;i<8;i++) {
 <!--var parent = document.getElementById('pictures');
@@ -263,13 +264,13 @@ str = str + shuffled_images[j].toString() + " ";
 	saveAs(data, "static.txt");
   };
   
-  registerExp(){
+  registerExp = function(){
     var endTime = new Date().getTime();  
 	var totTime = endTime-startTime;
 	str = str + totTime + "ms";
 	
 	makeTextFile(str);
-  }
+  };
   
   <!--vvar file = new File(makeTextFile(str), txtFile);-->
   
