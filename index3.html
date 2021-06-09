@@ -6,16 +6,16 @@
 
 <div id="pictures">
 
-  <img id="f0" src="f1.jpg" width='612px' height='408px' alt="01" />
-  <img id="f1" src="f2.jpg" width='612px' height='408px' alt="02" />
-  <img id="f2" src="f3.jpg" width='612px' height='408px' alt="03" />
-  <img id="f3" src="f4.jpg" width='612px' height='408px' alt="04" />
-  <img id="f4" src="f5.jpg" width='612px' height='408px' alt="05" />
-  <img id="f5" src="f6.jpg" width='612px' height='408px' alt="06" />
-  <img id="f6" src="f7.jpg" width='612px' height='408px' alt="07" />
-  <img id="f7" src="f8.jpg" width='612px' height='408px' alt="08" />
+<div><img id="f0" src="f1.jpg" width='612px' height='408px' alt="01" /><b>1 &nbsp;&nbsp;</b></div>  
+<div><img id="f1" src="f2.jpg" width='612px' height='408px' alt="02" /><b>2 &nbsp;&nbsp; </b></div>     
+<div><img id="f2" src="f3.jpg" width='612px' height='408px' alt="03" /><b>3 &nbsp;&nbsp; </b></div>    
+<div><img id="f3" src="f4.jpg" width='612px' height='408px' alt="04" /><b>4 &nbsp;&nbsp; </b> </div>    
+<div><img id="f4" src="f5.jpg" width='612px' height='408px' alt="05" /><b>5 &nbsp;&nbsp; </b></div>    
+<div><img id="f5" src="f6.jpg" width='612px' height='408px' alt="06" /><b>6 &nbsp;&nbsp; </b></div>    
+<div><img id="f6" src="f7.jpg" width='612px' height='408px' alt="07" /><b>7 &nbsp;&nbsp; </b> </div>   
+<div><img id="f7" src="f8.jpg" width='612px' height='408px' alt="08" /><b>8 &nbsp;&nbsp; </b></div>  
 </div>
-
+ <script src="FileSaver.js"></script>
 <script type="text/javascript">
 var array = ['f1.jpg','f2.jpg','f3.jpg','f4.jpg','f5.jpg','f6.jpg','f7.jpg','f8.jpg','f9.jpg','f10.jpg','f11.jpg','f12.jpg','f13.jpg','f14.jpg','f15.jpg','f16.jpg'];
 function shuffle(array) {
@@ -41,6 +41,38 @@ for(var i=0;i<8;i++) {
 var elem = document.getElementById('f' + (i));
 elem.src = shuffled_images[i] ;
 }
+
+var txtFile = "imgorder.txt";
+<!--var file = new File([""], txtFile);-->
+var str = "";
+
+for(var j=0;j<8;j++) {
+str = str + shuffled_images[j].toString() + " ";
+}
+ 
+ var textFile = null,
+  makeTextFile = function (txt1) {
+    var data = new Blob([txt1], {type: 'text/plain'});
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.str
+   // if (textFile !== null) {
+    //  window.URL.revokeObjectURL(textFile);
+    //}
+
+    //textFile = window.URL.createObjectURL(data);
+
+    // returns a URL you can use as a href
+    //return textFile;
+	;
+	saveAs(data, "static.txt");
+  };
+  
+  makeTextFile(str);
+  
+  <!--vvar file = new File(makeTextFile(str), txtFile);-->
+  
+
 </script>
 
 </body>
