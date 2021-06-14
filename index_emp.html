@@ -1,0 +1,149 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<div id="pictures">
+
+<input type="file"  accept="image/*" name="photo1" id="f1" onchange="checkPhoto(event, this.name, photo1, 'output1')"/><br />
+<p><img id="output1" width="400" /></p>
+<input type="file"  accept="image/*" name="photo2" id="f1" onchange="checkPhoto(event, this.name, photo2, 'output2')"/><br />
+<p><img id="output2" width="400" /></p>
+<input type="file"  accept="image/*" name="photo3" id="f1" onchange="checkPhoto(event, this.name, photo3, 'output3')"/><br />
+<p><img id="output3" width="400" /></p>
+<input type="file"  accept="image/*" name="photo4" id="f1" onchange="checkPhoto(event, this.name, photo4, 'output4')"/><br />
+<p><img id="output4" width="400" /></p>
+<input type="file"  accept="image/*" name="photo5" id="f1" onchange="checkPhoto(event, this.name, photo5, 'output5')"/><br />
+<p><img id="output5" width="400" /></p>
+<input type="file"  accept="image/*" name="photo6" id="f1" onchange="checkPhoto(event, this.name, photo6, 'output6')"/><br />
+<p><img id="output6" width="400" /></p>
+<input type="file"  accept="image/*" name="photo7" id="f1" onchange="checkPhoto(event, this.name, photo7, 'output7')"/><br />
+<p><img id="output7" width="400" /></p>
+<input type="file"  accept="image/*" name="photo8" id="f1" onchange="checkPhoto(event, this.name, photo8, 'output8')"/><br />
+<p><img id="output8" width="400" /></p>
+
+<button onclick="checkifallimg()">Press only when finished</button>
+
+</div>
+
+<script>
+var photo1 = localStorage.getItem("f1");
+var photo2 = localStorage.getItem("f2");
+var photo3 = localStorage.getItem("f3");
+var photo4 = localStorage.getItem("f4");
+var photo5 = localStorage.getItem("f5");
+var photo6 = localStorage.getItem("f6");
+var photo7 = localStorage.getItem("f7");
+var photo8 = localStorage.getItem("f8");
+
+document.write(photo1);
+document.write(photo2);
+document.write(photo3);
+document.write(photo4);
+document.write(photo5);
+document.write(photo6);
+document.write(photo7);
+document.write(photo8);
+
+var strtot = " ";
+var numphoto = 1;
+var prevout = 1;
+var imgs = ["output1","output2","output3","output4","output5","output6","output7","output8"]; 
+
+ loadfile = function(event, outpp) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById(outpp);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+  
+  imgempt = function(){
+    for(var m=0;m<8;m++) {
+		if(document.getElementById(imgs[m]).src.length == 0)
+	return true;
+	}
+	return false;
+  }
+
+function checkPhoto(event, tname, ordern, outp) {
+	while(ordern != "photo8"){
+    if(event.target.files[0].name != ordern) {
+        //document.getElementById("photoLabel").innerHTML = "Wrong order. Retry.";
+		document.write("Wrong order. Retry by reloading the page.");
+        return false;
+    }
+  // var image = document.getElementById(outp);
+  // image.src = event.target.baseUri;
+
+    loadfile(event, outp);
+	numphoto = numphoto + 1;
+	tname = tname.substring(0,5) + numphoto;
+	prevout = outp.substring(0,6) + numphoto;
+	//document.innerHTML = "<br><input type='file' accept='image/*'  name='" + tname + "' + id='f"+numphoto+"' onchange='checkPhoto(event, '" + tname+"', " + tname + "'"+ prevout +"')/><br /><p><img id='" + prevout + "' width='400' /></p>"
+	strtot = strtot + " " + ordern;
+    return true;
+	}
+	
+	if(event.target.files[0].name != ordern) {
+        //document.getElementById("photoLabel").innerHTML = "Wrong order. Retry.";
+		document.write("Wrong order. Retry by reloading the page.");
+        return false;
+    }
+	
+	if(event.target.files[0].name == "photo8"){
+		loadfile(event, outp);
+		//document.innerHTML = "<br/><button onclick='registerExp()'>Click me when Task is finished</button>";
+		return true;
+	}	
+	
+	
+};
+
+
+checkifallimg = function(){
+
+if(!imgempt()){
+				var button = document.createElement('button');
+				button.type = 'button';
+				button.innerHTML = 'Press me';
+				//button.className = 'btn-styled';
+	 
+				button.onclick = function() {
+				makeTextFile(strtot);
+			};
+	 
+				var container = document.getElementById('pictures');
+				container.appendChild(button);
+
+		}
+		else{
+		   document.write("upload all the images! Please reload the page to continue");
+		}
+};
+
+makeTextFile = function (txt1) {
+    var data = new Blob([txt1], {type: 'text/plain'});
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.str
+   // if (textFile !== null) {
+    //  window.URL.revokeObjectURL(textFile);
+    //}
+
+    //textFile = window.URL.createObjectURL(data);
+
+    // returns a URL you can use as a href
+    //return textFile;
+	;
+	
+	saveAs(data, "orderedok.txt");
+  };
+
+</script>
+
+
+</body>
+</html>

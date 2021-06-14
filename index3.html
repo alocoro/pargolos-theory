@@ -230,6 +230,7 @@ function shuffle(array) {
 }
 
 var shuffled_images = shuffle(array);
+
 for(var i=0;i<8;i++) {
 <!--var parent = document.getElementById('pictures');
 var elem = document.getElementById('f' + (i));
@@ -244,6 +245,14 @@ for(var j=0;j<8;j++) {
 str = str + shuffled_images[j].toString() + " ";
 }
 
+localStorage.setItem("f1", shuffled_images[0].toString());
+localStorage.setItem("f2", shuffled_images[1].toString());
+localStorage.setItem("f3", shuffled_images[2].toString());
+localStorage.setItem("f4", shuffled_images[3].toString());
+localStorage.setItem("f5", shuffled_images[4].toString());
+localStorage.setItem("f6", shuffled_images[5].toString());
+localStorage.setItem("f7", shuffled_images[6].toString());
+localStorage.setItem("f8", shuffled_images[7].toString());
  
  var textFile = null,
   makeTextFile = function (txt1) {
